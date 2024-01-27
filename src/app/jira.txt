@@ -1,0 +1,19 @@
+
+
+Initiative
+
+Make an engaging game
+
+Demonstrate a 
+
+
+
+
+
+improvements:
+
+centre sprites
+
+dont fudge blur 
+
+elegant/efficient abstract tiling animation
