@@ -16,8 +16,8 @@
 // cat 001 = standard
 // cat 002 = standard
 // cat 003 = standard
-// cat 004 = twice
-// cat 005 = quad
+// cat 004 = better
+// cat 005 = jackpot
 // cat 006 = wildcard
 // cat 007 = bonus game
 
@@ -37,6 +37,8 @@ import { BlurFilter, TextStyle, Texture, Graphics } from "pixi.js";
 import { Stage, Container, Sprite, Text, useTick} from "@pixi/react";
 
 export default function Board() {
+
+
     const blurFilter = React.useMemo(() => {
         return new BlurFilter(10);
       }, []);
@@ -51,8 +53,6 @@ export default function Board() {
     mask.beginFill(0xffffff);
     mask.drawRect(250, 200, 200, 300); // Set the mask's size to match the container's
     mask.endFill();
-
-    
 
     return (
       <React.Fragment>
