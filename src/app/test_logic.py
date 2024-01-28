@@ -5,16 +5,6 @@ from collections import Counter
 
 import random 
 
-tile_weights = {
-    'L1' : 40,
-    'L2' : 40,
-    'L3' : 40,
-    'L4' : 40,
-    'H1' : 20,
-    'J1' : 1,
-    'W' : 50,
-    'B' : 10
-}
 
 letter_pay = 0.25
 
@@ -25,6 +15,18 @@ payouts = {
     'L4' : {'2' : letter_pay, '3' : letter_pay*2},
     'H1' : {'2' : letter_pay*4, '3' : letter_pay*8},
     'J1' : {'2' : letter_pay*12, '3' : letter_pay*16},
+}
+
+
+tile_weights = {
+    'L1' : 40,
+    'L2' : 40,
+    'L3' : 40,
+    'L4' : 40,
+    'H1' : 20,
+    'J1' : 1,
+    'W' : 50,
+    'B' : 10
 }
 
 def weighted_random_selection(items_with_weights):
@@ -40,7 +42,6 @@ def weighted_random_selection(items_with_weights):
 
 
 def extract_payline(board, c1, c2, c3):
-    # print(board, c1, c2, c3)
     payline = [board[c1[0]][c1[1]], board[c2[0]][c2[1]], board[c3[0]][c3[1]]]
     return payline
     
