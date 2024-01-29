@@ -25,16 +25,17 @@ export default function Pixi() {
           />
         </Container>
 
-        <Board/>
+        <Board />
 
         <Sprite
-            image={winmultis.src}
-            x={400}
-            y={600}
-            width={600}
-            height={200}
-            anchor={{ x: 0.5, y: 0.5 }}
-          />
+          image={winmultis.src}
+          x={400}
+          y={600}
+          width={600}
+          height={200}
+          anchor={{ x: 0.5, y: 0.5 }}
+        />
+        
       </Stage>
     );
 }
