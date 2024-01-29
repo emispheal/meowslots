@@ -7,12 +7,12 @@ import { Stage, Container, Sprite, Text} from "@pixi/react";
 import { useState } from "react";
 import Board from './board';
 import meowslots from './meowslots.png';
-import winmultis from './winmultis.jpg';
+import winmultis from '../sprites/winmultis.jpg';
 
 export default function Pixi() {
 
     return (
-      <Stage options={{ backgroundColor: "black" }} width={1200} height={1500}>
+      <Stage options={{ backgroundColor: "black" }} width={1200} height={700}>
         <Container x={400} y={50}>
           <Sprite
             image={meowslots.src}
@@ -30,8 +30,8 @@ export default function Pixi() {
         <Sprite
             image={winmultis.src}
             x={400}
-            y={500}
-            width={200}
+            y={600}
+            width={600}
             height={200}
             anchor={{ x: 0.5, y: 0.5 }}
           />
