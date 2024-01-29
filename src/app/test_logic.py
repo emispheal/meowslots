@@ -38,9 +38,6 @@ def weighted_random_selection(items_with_weights):
     selected_item = random.choices(items, weights=weights, k=1)[0]
     return selected_item
 
-
-
-
 def extract_payline(board, c1, c2, c3):
     payline = [board[c1[0]][c1[1]], board[c2[0]][c2[1]], board[c3[0]][c3[1]]]
     return payline

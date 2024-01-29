@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 import React from 'react';
 
 import spindown from '../sprites/spindown.jpg';
-import spinup from '../sprites/spinup.jpg'; // spinup
+import spinup from '../sprites/spinup.jpg'; 
 
 export default function SpinButton({name, x, y, onClick}: {name: string, x: number, y: number, onClick: Function}) {
 

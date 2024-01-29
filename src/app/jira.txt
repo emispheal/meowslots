@@ -1,12 +1,30 @@
-
+## Random dump of comments/notes
+# Assigned to: me (
 
 Initiative
 
 Make an engaging game
 
 
+// 3 reel 8 cats
+// I don't know how slots work so this is a rough sketch
+// as long as there's a negative payout no engagement optimisations necessary :^)
+// dark modal overlay when paying out
+// add sounds idk
+// make trees for payout probs
+// draw lines through the model when paying out
 
 
+
+// legend
+// cat000 = standard 
+// cat 001 = standard
+// cat 002 = standard
+// cat 003 = standard
+// cat 004 = better
+// cat 005 = jackpot
+// cat 006 = wildcard
+// cat 007 = bonus game
 
 improvements:
 
