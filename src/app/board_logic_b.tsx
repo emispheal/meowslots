@@ -1,15 +1,8 @@
 
+// im going to couple the the board spawning with the board display logic
+// along with the bonus spins or spins left logic.
+// this component should only calc the payouts.
 
-const TILE_WEIGHTS = {
-    'L1' : 40,
-    'L2' : 40,
-    'L3' : 40,
-    'L4' : 40,
-    'H1' : 20,
-    'J1' : 1,
-    'W' : 50,
-    'B' : 10
-}
 
 const PAYLINES: number[][][] = [
     [[0, 0], [1, 0], [2, 0]],
@@ -30,46 +23,7 @@ const PAYOUTS : { [key: string]: { '2': number | string, '3': number | string } 
     'J1' : {'2' : BASE_MULTI*12, '3' : BASE_MULTI*16},
 }
 
-function weightedRandomSelection(itemsWithWeights: Object): string {
-    // Extract items and weights from the itemsWithWeights object
-    const items = Object.keys(itemsWithWeights);
-    const weights = Object.values(itemsWithWeights);
-  
-    // Compute the cumulative weights
-    const cumulativeWeights = [];
-    let totalWeight = 0;
-    for (const weight of weights) {
-      totalWeight += weight;
-      cumulativeWeights.push(totalWeight);
-    }
-  
-    // Select a random value within the range of the total weight
-    const randomValue = Math.random() * totalWeight;
-  
-    // Find the item that corresponds to the random value
-    for (let i = 0; i < items.length; i++) {
-      if (randomValue < cumulativeWeights[i]) {
-        return items[i];
-      }
-    }
-  
-    // This line should never be reached if the weights are non-zero and the logic is correct
-    throw new Error('Failed to select a random item based on weights.');
-  }
-
-  function spawnBoard(): string[][] {
-    let board: string[][] = [];
-    for (let i = 0; i < 3; i++) {
-      let row: string[] = [];
-      for (let j = 0; j < 3; j++) {
-        row.push(weightedRandomSelection(TILE_WEIGHTS)); 
-      }
-      board.push(row);
-    }
-    return board;
-  }
-
-  function extractPayline(board: string[][], c1: [number, number], c2: [number, number], c3: [number, number]): string[] {
+  function extractPayline(board: string[][], c1: number[], c2: number[], c3: number[]): string[] {
     const payline: string[] = [
       board[c1[0]][c1[1]],
       board[c2[0]][c2[1]],
@@ -137,10 +91,25 @@ function weightedRandomSelection(itemsWithWeights: Object): string {
     }
     return 0;
   }
+
+  export function calcBoardPayout(board: string[][]): any[] {
+    let multi_results = [];
+    for (const line of PAYLINES) {
+      const [c1, c2, c3] = line;
+      const line_result = extractPayline(board, c1, c2, c3);
+      const multi_result = calcPaylineMulti(line_result);
+
+      multi_results.push(multi_result);
+    }
+
+    return multi_results;
+  }
   
+
+
   // Example usage:
 //   const board = spawnBoard();
 //   console.log('Board:', board);
 
-  console.log(calcPaylineMulti(['B', 'W', 'W']));
+  console.log(calcPaylineMulti(['W', 'B', 'L1']));
 

@@ -1,13 +1,9 @@
-var TILE_WEIGHTS = {
-    'L1': 40,
-    'L2': 40,
-    'L3': 40,
-    'L4': 40,
-    'H1': 20,
-    'J1': 1,
-    'W': 50,
-    'B': 10
-};
+"use strict";
+// im going to couple the the board spawning with the board display logic
+// along with the bonus spins or spins left logic.
+// this component should only calc the payouts.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.calcBoardPayout = void 0;
 var PAYLINES = [
     [[0, 0], [1, 0], [2, 0]],
     [[0, 1], [1, 1], [2, 1]],
@@ -24,40 +20,6 @@ var PAYOUTS = {
     'H1': { '2': BASE_MULTI * 4, '3': BASE_MULTI * 8 },
     'J1': { '2': BASE_MULTI * 12, '3': BASE_MULTI * 16 },
 };
-function weightedRandomSelection(itemsWithWeights) {
-    // Extract items and weights from the itemsWithWeights object
-    var items = Object.keys(itemsWithWeights);
-    var weights = Object.values(itemsWithWeights);
-    // Compute the cumulative weights
-    var cumulativeWeights = [];
-    var totalWeight = 0;
-    for (var _i = 0, weights_1 = weights; _i < weights_1.length; _i++) {
-        var weight = weights_1[_i];
-        totalWeight += weight;
-        cumulativeWeights.push(totalWeight);
-    }
-    // Select a random value within the range of the total weight
-    var randomValue = Math.random() * totalWeight;
-    // Find the item that corresponds to the random value
-    for (var i = 0; i < items.length; i++) {
-        if (randomValue < cumulativeWeights[i]) {
-            return items[i];
-        }
-    }
-    // This line should never be reached if the weights are non-zero and the logic is correct
-    throw new Error('Failed to select a random item based on weights.');
-}
-function spawnBoard() {
-    var board = [];
-    for (var i = 0; i < 3; i++) {
-        var row = [];
-        for (var j = 0; j < 3; j++) {
-            row.push(weightedRandomSelection(TILE_WEIGHTS));
-        }
-        board.push(row);
-    }
-    return board;
-}
 function extractPayline(board, c1, c2, c3) {
     var payline = [
         board[c1[0]][c1[1]],
@@ -123,7 +85,19 @@ function calcPaylineMulti(payline) {
     }
     return 0;
 }
+function calcBoardPayout(board) {
+    var multi_results = [];
+    for (var _i = 0, PAYLINES_1 = PAYLINES; _i < PAYLINES_1.length; _i++) {
+        var line = PAYLINES_1[_i];
+        var c1 = line[0], c2 = line[1], c3 = line[2];
+        var line_result = extractPayline(board, c1, c2, c3);
+        var multi_result = calcPaylineMulti(line_result);
+        multi_results.push(multi_result);
+    }
+    return multi_results;
+}
+exports.calcBoardPayout = calcBoardPayout;
 // Example usage:
 //   const board = spawnBoard();
 //   console.log('Board:', board);
-console.log(calcPaylineMulti(['B', 'W', 'W']));
+console.log(calcPaylineMulti(['W', 'B', 'L1']));
